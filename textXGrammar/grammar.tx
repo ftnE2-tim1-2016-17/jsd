@@ -1,0 +1,52 @@
+Query:
+    'Nadji' 'najjeftinije' 'automobile' 'u'
+    City
+    'od'
+    DateFrom TimeFrom
+    'do'
+    DateTo TimeTo
+;
+
+City:
+    'Beograd'|'Novi Sad'|'Nis'
+;
+
+DateFrom:
+    Day '.' Month '.' Year
+;
+
+Day:
+    Number Number
+;
+
+Month:
+    Number Number
+;
+
+Year:
+    Number Number Number Number
+;
+
+Number:
+    /[0-9]/
+;
+
+TimeFrom:
+    Hour ':' Minute
+;
+
+Hour:
+    Number Number
+;
+
+Minute:
+    Number Number
+;
+
+DateTo:
+    Day '.' Month '.' Year
+;
+
+TimeTo:
+    Hour ':' Minute
+;
