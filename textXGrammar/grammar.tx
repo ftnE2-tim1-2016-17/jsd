@@ -16,19 +16,19 @@ DateFrom:
 ;
 
 Day:
-    number0 = Number number1 = Number
+    number = Number
 ;
 
 Month:
-    number0 = Number number1 = Number
+    number = Number
 ;
 
 Year:
-    number0 = Number number1 = Number number2 = Number number3 = Number
+    number = Number
 ;
 
 Number:
-    /[0-9]/
+    /[0-9]+/
 ;
 
 TimeFrom:
@@ -36,11 +36,11 @@ TimeFrom:
 ;
 
 Hour:
-    number0 = Number number1 = Number
+    number = Number
 ;
 
 Minute:
-    number0 = Number number1 = Number
+    number = Number
 ;
 
 DateTo:
