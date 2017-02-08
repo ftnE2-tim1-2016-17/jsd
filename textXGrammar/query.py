@@ -1,8 +1,6 @@
-from textx.metamodel import metamodel_from_file
-from textx.export import metamodel_export, model_export
-import pydot
-from textx.exceptions import TextXSemanticError
+import os
+
+from textXGrammar import execute as ex
 
 
-class Query(object):
-    pass
+ex.execute(os.path.split(__file__)[0], 'grammar.tx', 'test.query', True, True)

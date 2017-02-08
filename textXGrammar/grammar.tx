@@ -1,10 +1,10 @@
 Query:
     'Nadji' 'najjeftinije' 'automobile' 'u'
-    City
+    city = City
     'od'
-    DateFrom TimeFrom
+    dateFrom = DateFrom timeFrom = TimeFrom
     'do'
-    DateTo TimeTo
+    dateTo = DateTo timeTo = TimeTo
 ;
 
 City:
@@ -12,19 +12,19 @@ City:
 ;
 
 DateFrom:
-    Day '.' Month '.' Year
+    day = Day '.' month = Month '.' year = Year
 ;
 
 Day:
-    Number Number
+    number0 = Number number1 = Number
 ;
 
 Month:
-    Number Number
+    number0 = Number number1 = Number
 ;
 
 Year:
-    Number Number Number Number
+    number0 = Number number1 = Number number2 = Number number3 = Number
 ;
 
 Number:
@@ -32,21 +32,21 @@ Number:
 ;
 
 TimeFrom:
-    Hour ':' Minute
+    hour = Hour ':' minute = Minute
 ;
 
 Hour:
-    Number Number
+    number0 = Number number1 = Number
 ;
 
 Minute:
-    Number Number
+    number0 = Number number1 = Number
 ;
 
 DateTo:
-    Day '.' Month '.' Year
+    day = Day '.' month = Month '.' year = Year
 ;
 
 TimeTo:
-    Hour ':' Minute
+    hour = Hour ':' minute = Minute
 ;

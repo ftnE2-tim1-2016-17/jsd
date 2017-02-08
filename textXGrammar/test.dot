@@ -1,0 +1,44 @@
+
+    digraph xtext {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+57199312 -> 57158768 [label="dateFrom" arrowtail=diamond dir=both]
+57158768 -> 57158480 [label="day" arrowtail=diamond dir=both]
+57158480[label="{:Day|+number0:str='0'\l+number1:str='8'\l}"]
+57158768 -> 57158448 [label="month" arrowtail=diamond dir=both]
+57158448[label="{:Month|+number0:str='0'\l+number1:str='2'\l}"]
+57158768 -> 57159248 [label="year" arrowtail=diamond dir=both]
+57159248[label="{:Year|+number0:str='2'\l+number1:str='0'\l+number2:str='1'\l+number3:str='7'\l}"]
+57158768[label="{:DateFrom|}"]
+57199312 -> 57158800 [label="timeFrom" arrowtail=diamond dir=both]
+57158800 -> 57159216 [label="hour" arrowtail=diamond dir=both]
+57159216[label="{:Hour|+number0:str='1'\l+number1:str='3'\l}"]
+57158800 -> 57158288 [label="minute" arrowtail=diamond dir=both]
+57158288[label="{:Minute|+number0:str='3'\l+number1:str='0'\l}"]
+57158800[label="{:TimeFrom|}"]
+57199312 -> 57157456 [label="dateTo" arrowtail=diamond dir=both]
+57157456 -> 57158256 [label="day" arrowtail=diamond dir=both]
+57158256[label="{:Day|+number0:str='1'\l+number1:str='0'\l}"]
+57157456 -> 57157072 [label="month" arrowtail=diamond dir=both]
+57157072[label="{:Month|+number0:str='0'\l+number1:str='2'\l}"]
+57157456 -> 57157040 [label="year" arrowtail=diamond dir=both]
+57157040[label="{:Year|+number0:str='2'\l+number1:str='0'\l+number2:str='1'\l+number3:str='7'\l}"]
+57157456[label="{:DateTo|}"]
+57199312 -> 57155888 [label="timeTo" arrowtail=diamond dir=both]
+57155888 -> 57158512 [label="hour" arrowtail=diamond dir=both]
+57158512[label="{:Hour|+number0:str='1'\l+number1:str='5'\l}"]
+57155888 -> 57159664 [label="minute" arrowtail=diamond dir=both]
+57159664[label="{:Minute|+number0:str='0'\l+number1:str='0'\l}"]
+57155888[label="{:TimeTo|}"]
+57199312[label="{:Query|+city:str='Beograd'\l}"]
+
+}

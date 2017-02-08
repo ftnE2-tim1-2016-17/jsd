@@ -1,0 +1,73 @@
+
+    digraph xtext {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+56887984[ label="{Day|+number0:Number\l+number1:Number\l}"]
+
+56788336 -> 56887536[arrowtail=diamond, dir=both, headlabel="dateFrom "]
+56788336 -> 57029104[arrowtail=diamond, dir=both, headlabel="timeFrom "]
+56788336 -> 57030448[arrowtail=diamond, dir=both, headlabel="dateTo "]
+56788336 -> 57030896[arrowtail=diamond, dir=both, headlabel="timeTo "]
+56788336[ label="{Query|+city:City\l}"]
+
+57029552[ label="{Hour|+number0:Number\l+number1:Number\l}"]
+
+56887536 -> 56887984[arrowtail=diamond, dir=both, headlabel="day "]
+56887536 -> 56888432[arrowtail=diamond, dir=both, headlabel="month "]
+56887536 -> 56888880[arrowtail=diamond, dir=both, headlabel="year "]
+56887536[ label="{DateFrom|}"]
+
+57030448 -> 56887984[arrowtail=diamond, dir=both, headlabel="day "]
+57030448 -> 56888432[arrowtail=diamond, dir=both, headlabel="month "]
+57030448 -> 56888880[arrowtail=diamond, dir=both, headlabel="year "]
+57030448[ label="{DateTo|}"]
+
+57030000[ label="{Minute|+number0:Number\l+number1:Number\l}"]
+
+56888432[ label="{Month|+number0:Number\l+number1:Number\l}"]
+
+57030896 -> 57029552[arrowtail=diamond, dir=both, headlabel="hour "]
+57030896 -> 57030000[arrowtail=diamond, dir=both, headlabel="minute "]
+57030896[ label="{TimeTo|}"]
+
+56887088[ label="{City|Beograd\|Novi Sad\|Nis}"]
+
+57028656[ label="{Number|[0-9]}"]
+
+57029104 -> 57029552[arrowtail=diamond, dir=both, headlabel="hour "]
+57029104 -> 57030000[arrowtail=diamond, dir=both, headlabel="minute "]
+57029104[ label="{TimeFrom|}"]
+
+56888880[ label="{Year|+number0:Number\l+number1:Number\l+number2:Number\l+number3:Number\l}"]
+
+56883888[ label="{ID|}"]
+
+56885744[ label="{FLOAT|}"]
+
+56884784[ label="{BOOL|}"]
+
+56886640[ label="{BASETYPE|}"]
+56886640 -> 56886192 [dir=back]
+56886640 -> 56884784 [dir=back]
+56886640 -> 56883888 [dir=back]
+56886640 -> 56884336 [dir=back]
+
+56885296[ label="{INT|}"]
+
+56886192[ label="{NUMBER|}"]
+56886192 -> 56885744 [dir=back]
+56886192 -> 56885296 [dir=back]
+
+56884336[ label="{STRING|}"]
+
+
+}
