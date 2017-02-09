@@ -11,63 +11,63 @@
     edge[dir=black,arrowtail=empty]
 
 
-62285616 -> 62286512[arrowtail=diamond, dir=both, headlabel="dateFrom "]
-62285616 -> 62432176[arrowtail=diamond, dir=both, headlabel="timeFrom "]
-62285616 -> 62433520[arrowtail=diamond, dir=both, headlabel="dateTo "]
-62285616 -> 62433968[arrowtail=diamond, dir=both, headlabel="timeTo "]
-62285616[ label="{Query|+city:City\l}"]
+56448816 -> 56449712[arrowtail=diamond, dir=both, headlabel="dateFrom "]
+56448816 -> 56595376[arrowtail=diamond, dir=both, headlabel="timeFrom "]
+56448816 -> 56596720[arrowtail=diamond, dir=both, headlabel="dateTo "]
+56448816 -> 56597168[arrowtail=diamond, dir=both, headlabel="timeTo "]
+56448816[ label="{Query|+city:City\l}"]
 
-62286064[ label="{City|Beograd\|Novi Sad\|Nis}"]
+56450160[ label="{Day|+number:Number\l}"]
 
-62286960[ label="{Day|+number:Number\l}"]
+56594928[ label="{Number|[0-9]+}"]
 
-62433520 -> 62286960[arrowtail=diamond, dir=both, headlabel="day "]
-62433520 -> 62287408[arrowtail=diamond, dir=both, headlabel="month "]
-62433520 -> 62431280[arrowtail=diamond, dir=both, headlabel="year "]
-62433520[ label="{DateTo|}"]
+56595376 -> 56595824[arrowtail=diamond, dir=both, headlabel="hour "]
+56595376 -> 56596272[arrowtail=diamond, dir=both, headlabel="minute "]
+56595376[ label="{TimeFrom|}"]
 
-62286512 -> 62286960[arrowtail=diamond, dir=both, headlabel="day "]
-62286512 -> 62287408[arrowtail=diamond, dir=both, headlabel="month "]
-62286512 -> 62431280[arrowtail=diamond, dir=both, headlabel="year "]
-62286512[ label="{DateFrom|}"]
+56450608[ label="{Month|+number:Number\l}"]
 
-62432624[ label="{Hour|+number:Number\l}"]
+56597168 -> 56595824[arrowtail=diamond, dir=both, headlabel="hour "]
+56597168 -> 56596272[arrowtail=diamond, dir=both, headlabel="minute "]
+56597168[ label="{TimeTo|}"]
 
-62287408[ label="{Month|+number:Number\l}"]
+56449712 -> 56450160[arrowtail=diamond, dir=both, headlabel="day "]
+56449712 -> 56450608[arrowtail=diamond, dir=both, headlabel="month "]
+56449712 -> 56594480[arrowtail=diamond, dir=both, headlabel="year "]
+56449712[ label="{DateFrom|}"]
 
-62431728[ label="{Number|[0-9]+}"]
+56596720 -> 56450160[arrowtail=diamond, dir=both, headlabel="day "]
+56596720 -> 56450608[arrowtail=diamond, dir=both, headlabel="month "]
+56596720 -> 56594480[arrowtail=diamond, dir=both, headlabel="year "]
+56596720[ label="{DateTo|}"]
 
-62431280[ label="{Year|+number:Number\l}"]
+56595824[ label="{Hour|+number:Number\l}"]
 
-62433072[ label="{Minute|+number:Number\l}"]
+56594480[ label="{Year|+number:Number\l}"]
 
-62433968 -> 62432624[arrowtail=diamond, dir=both, headlabel="hour "]
-62433968 -> 62433072[arrowtail=diamond, dir=both, headlabel="minute "]
-62433968[ label="{TimeTo|}"]
+56596272[ label="{Minute|+number:Number\l}"]
 
-62432176 -> 62432624[arrowtail=diamond, dir=both, headlabel="hour "]
-62432176 -> 62433072[arrowtail=diamond, dir=both, headlabel="minute "]
-62432176[ label="{TimeFrom|}"]
+56449264[ label="{City|Beograd\|Novi Sad\|Nis}"]
 
-62284272[ label="{NUMBER|}"]
-62284272 -> 62283824 [dir=back]
-62284272 -> 62271024 [dir=back]
+56438320[ label="{INT|}"]
 
-62270576[ label="{BOOL|}"]
+56436976[ label="{ID|}"]
 
-62271024[ label="{INT|}"]
+56447920[ label="{BASETYPE|}"]
+56447920 -> 56447472 [dir=back]
+56447920 -> 56437872 [dir=back]
+56447920 -> 56436976 [dir=back]
+56447920 -> 56437424 [dir=back]
 
-62270128[ label="{STRING|}"]
+56437424[ label="{STRING|}"]
 
-62284720[ label="{BASETYPE|}"]
-62284720 -> 62284272 [dir=back]
-62284720 -> 62270576 [dir=back]
-62284720 -> 62269680 [dir=back]
-62284720 -> 62270128 [dir=back]
+56447472[ label="{NUMBER|}"]
+56447472 -> 56447024 [dir=back]
+56447472 -> 56438320 [dir=back]
 
-62283824[ label="{FLOAT|}"]
+56437872[ label="{BOOL|}"]
 
-62269680[ label="{ID|}"]
+56447024[ label="{FLOAT|}"]
 
 
 }

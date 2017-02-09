@@ -5,8 +5,6 @@ def make_requests(model):
     response = [None]
     if request_www_rentalcars_com(response, model):
         print(response[0].headers.get_content_charset())
-        #print(zlib.decompress(response[0].read(), 16+zlib.MAX_WBITS))
-        #print(response[0].read())
         html_response = response[0].read()
         response[0].close()
         return html_response
@@ -69,4 +67,3 @@ def request_www_rentalcars_com(response, model):
         return False'''
 
     return True
-
