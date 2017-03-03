@@ -1,10 +1,28 @@
 Query:
-    'Nadji' 'najjeftinije' 'automobile' 'u'
-    city = City
-    'od'
-    dateFrom = DateFrom timeFrom = TimeFrom
-    'do'
-    dateTo = DateTo timeTo = TimeTo
+    serviceType = ServiceType
+    serviceItem = ServiceItem
+
+    parameters *= Parameters
+;
+
+ServiceType:
+    'Iznajmljivanje'|'Kupovina'
+;
+
+ServiceItem:
+    (car = Car) | (realEstate = RealEstate)
+;
+
+Car:
+    "automobila" | "auto" | "auta" | "automobila" | "vozila"
+;
+
+RealEstate:
+    "stana" | "kuca" | "kuce" | "stan"
+;
+
+Parameters:
+    (city = City) | (dateFrom = DateFrom) | (dateTo = DateTo) | (timeFrom = TimeFrom) | (timeTo = TimeTo) | (itemParameters = ItemParameters)
 ;
 
 City:
@@ -12,7 +30,23 @@ City:
 ;
 
 DateFrom:
-    day = Day '.' month = Month '.' year = Year
+    "od" dateFrom = Date
+;
+
+TimeFrom:
+   "od" "h" timeFrom = Time
+;
+
+DateTo:
+    "do" dateTo = Date
+;
+
+TimeTo:
+    "do" "h" timeTo = Time
+;
+
+Date:
+    day = Day (('.'|'/'|'-') month = Month (('.'|'/'|'-') year = Year)?)?
 ;
 
 Day:
@@ -31,8 +65,8 @@ Number:
     /[0-9]+/
 ;
 
-TimeFrom:
-    hour = Hour ':' minute = Minute
+Time:
+    hour = Hour ((':'|'.'|'-') minute = Minute)?
 ;
 
 Hour:
@@ -43,10 +77,38 @@ Minute:
     number = Number
 ;
 
-DateTo:
-    day = Day '.' month = Month '.' year = Year
+ItemParameters:
+    (carParameters = CarParameters) | (realEstateParameters = RealEstateParameters)
 ;
 
-TimeTo:
-    hour = Hour ':' minute = Minute
+CarParameters:
+    (carBrand = CarBrand) | (fuelType = FuelType) | (gearbox = Gearbox) | (class = Class) | (priceFrom = PriceFrom) | (priceTo = PriceTo)
+;
+
+CarBrand:
+    name = /[^,]*/
+;
+
+FuelType:
+    "benzin"|"plin"|"dizel"|"eurodizel"|"benzin plin"
+;
+
+Gearbox:
+    "automatik"|"manuelni"|"poluautomatik"
+;
+
+Class:
+    "gradski"|"niska klasa"|"srednja klasa"|"visoka klasa"|"luksuzni"|"skuter"|"limuzina"|"kombi"
+;
+
+PriceFrom:
+    "od""E" Number
+;
+
+PriceTo:
+    "do""E" Number
+;
+
+RealEstateParameters:
+    'to be implemented'
 ;

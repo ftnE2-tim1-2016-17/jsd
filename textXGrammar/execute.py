@@ -7,7 +7,7 @@ import datetime
 
 class Query(object):
 
-    def interpreter(self, model):
+    '''def interpreter(self, model):
 
         self.city = model.city
 
@@ -23,7 +23,7 @@ class Query(object):
         self.hourTo = model.timeTo.hour.number
         self.minuteTo = model.timeTo.minute.number
 
-        return self
+        return self '''
 
 
 
@@ -50,9 +50,9 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
         graph = pydot.graph_from_dot_file(model_name + '.dot')
         graph[0].write_png(model_name + '.png')
 
-    query = Query()
-    query_set = query.interpreter(model)
+    #query = Query()
+    #query_set = query.interpreter(model)
 
-    return query_set
+    #return query_set
 
 
