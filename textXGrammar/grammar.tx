@@ -22,7 +22,7 @@ RealEstate:
 ;
 
 Parameters:
-    (city = City) | (dateFrom = DateFrom) | (dateTo = DateTo) | (timeFrom = TimeFrom) | (timeTo = TimeTo) | (itemParameters = ItemParameters)
+    (city = City) | (dateFrom = DateFrom) | (dateTo = DateTo) | (timeFrom = TimeFrom) | (timeTo = TimeTo) | (itemParameters = ItemParameters) | (realEstateParameters = RealEstateParameters)
 ;
 
 City:
@@ -78,11 +78,11 @@ Minute:
 ;
 
 ItemParameters:
-    (carParameters = CarParameters) | (realEstateParameters = RealEstateParameters)
+    carParameters *= CarParameters
 ;
 
 CarParameters:
-    (carBrand = CarBrand) | (fuelType = FuelType) | (gearbox = Gearbox) | (class = Class) | (priceFrom = PriceFrom) | (priceTo = PriceTo)
+    (carBrand = CarBrand) | (fuelType = FuelType) | (gearbox = Gearbox) | (carClass = CarClass) | (priceFrom = PriceFrom) | (priceTo = PriceTo)
 ;
 
 CarBrand:
@@ -97,16 +97,16 @@ Gearbox:
     "automatik"|"manuelni"|"poluautomatik"
 ;
 
-Class:
+CarClass:
     "gradski"|"niska klasa"|"srednja klasa"|"visoka klasa"|"luksuzni"|"skuter"|"limuzina"|"kombi"
 ;
 
 PriceFrom:
-    "od""E" Number
+    "od""e" Number
 ;
 
 PriceTo:
-    "do""E" Number
+    "do""e" Number
 ;
 
 RealEstateParameters:
