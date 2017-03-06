@@ -11,98 +11,100 @@
     edge[dir=black,arrowtail=empty]
 
 
-55602736 -> 55845360[arrowtail=diamond, dir=both, headlabel="dateFrom "]
-55602736 -> 55846256[arrowtail=diamond, dir=both, headlabel="dateTo "]
-55602736 -> 55845808[arrowtail=diamond, dir=both, headlabel="timeFrom "]
-55602736 -> 55846704[arrowtail=diamond, dir=both, headlabel="timeTo "]
-55602736 -> 55854896[arrowtail=diamond, dir=both, headlabel="itemParameters "]
-55602736[ label="{Parameters|+city:City\l+realEstateParameters:RealEstateParameters\l}"]
+57035976[ label="{PriceFrom|+number:Number\l}"]
 
-55846704 -> 55853552[arrowtail=diamond, dir=both, headlabel="timeTo "]
-55846704[ label="{TimeTo|}"]
+56478648[ label="{Day|+number:Number\l}"]
 
-55879024[ label="{RealEstateParameters|to be implemented}"]
+56481336[ label="{Year|+number:Number\l}"]
 
-55846256 -> 55847152[arrowtail=diamond, dir=both, headlabel="dateTo "]
-55846256[ label="{DateTo|}"]
+56479544[ label="{Month|+number:Number\l}"]
 
-55878128[ label="{PriceFrom|od e [0-9]+}"]
+56483128[ label="{Minute|+number:Number\l}"]
 
-55854448[ label="{Minute|+number:Number\l}"]
+57044936[ label="{CarClass|gradski\|niska klasa\|srednja klasa\|visoka klasa\|luksuzni\|skuter\|limuzina\|kombi}"]
 
-55844912[ label="{City|Beograd\|Novi Sad\|Nis}"]
+56484024 -> 56486712[arrowtail=diamond, dir=both, headlabel="carParameters 0..*"]
+56484024[ label="{ItemParameters|}"]
 
-55847152 -> 55847600[arrowtail=diamond, dir=both, headlabel="day "]
-55847152 -> 55848048[arrowtail=diamond, dir=both, headlabel="month "]
-55847152 -> 55848496[arrowtail=diamond, dir=both, headlabel="year "]
-55847152[ label="{Date|}"]
+56472376[ label="{RealEstate|stana\|kuca\|kuce\|stan}"]
 
-55602288[ label="{RealEstate|stana\|kuca\|kuce\|stan}"]
+56486712 -> 57035976[arrowtail=diamond, dir=both, headlabel="priceFrom "]
+56486712 -> 57039560[arrowtail=diamond, dir=both, headlabel="priceTo "]
+56486712[ label="{CarParameters|+carBrand:CarBrand\l+fuelType:FuelType\l+gearbox:Gearbox\l+carClass:CarClass\l}"]
 
-55601392[ label="{ServiceItem|+car:Car\l+realEstate:RealEstate\l}"]
+56473272 -> 56475064[arrowtail=diamond, dir=both, headlabel="dateFrom "]
+56473272 -> 56444600[arrowtail=diamond, dir=both, headlabel="dateTo "]
+56473272 -> 56475960[arrowtail=diamond, dir=both, headlabel="timeFrom "]
+56473272 -> 56476856[arrowtail=diamond, dir=both, headlabel="timeTo "]
+56473272 -> 56484024[arrowtail=diamond, dir=both, headlabel="itemParameters "]
+56473272[ label="{Parameters|+city:City\l+realEstateParameters:RealEstateParameters\l}"]
 
-55600944[ label="{ServiceType|Iznajmljivanje\|Kupovina}"]
+56480440[ label="{Number|[0-9]+}"]
 
-55854000[ label="{Hour|+number:Number\l}"]
+56487608[ label="{FuelType|benzin\|plin\|dizel\|eurodizel\|benzin plin}"]
 
-55601840[ label="{Car|automobila\|auto\|auta\|automobila\|vozila}"]
+56475064 -> 56477752[arrowtail=diamond, dir=both, headlabel="dateFrom "]
+56475064[ label="{DateFrom|}"]
 
-55848048[ label="{Month|+number:Number\l}"]
+56482232[ label="{Hour|+number:Number\l}"]
 
-55845808 -> 55853552[arrowtail=diamond, dir=both, headlabel="timeFrom "]
-55845808[ label="{TimeFrom|}"]
+57037768[ label="{Gearbox|automatik\|manuelni\|poluautomatik}"]
 
-55848496[ label="{Year|+number:Number\l}"]
+56476856 -> 56484920[arrowtail=diamond, dir=both, headlabel="timeTo "]
+56476856[ label="{TimeTo|}"]
 
-55855792[ label="{CarBrand|alfa romeo\|audi\|bmw\|chevrolet\|citroen\|dacia\|fiat\|ford\|honda\|hyundai\|jaguar\|jeep\|kia\|lancia\|mazda\|mercedes\|nissan\|opel\|peugeot\|renault\|seat\|skoda\|suzuki\|volkswagen\|vw\|volvo}"]
+56471480[ label="{Car|automobila\|auto\|auta\|automobila\|vozila}"]
 
-55845360 -> 55847152[arrowtail=diamond, dir=both, headlabel="dateFrom "]
-55845360[ label="{DateFrom|}"]
+56477752 -> 56478648[arrowtail=diamond, dir=both, headlabel="day "]
+56477752 -> 56479544[arrowtail=diamond, dir=both, headlabel="month "]
+56477752 -> 56481336[arrowtail=diamond, dir=both, headlabel="year "]
+56477752[ label="{Date|}"]
 
-55600496 -> 55601392[arrowtail=diamond, dir=both, headlabel="serviceItem "]
-55600496 -> 55602736[arrowtail=diamond, dir=both, headlabel="parameters 0..*"]
-55600496[ label="{Query|+serviceType:ServiceType\l}"]
+56469688 -> 56470584[arrowtail=diamond, dir=both, headlabel="serviceItem "]
+56469688 -> 56473272[arrowtail=diamond, dir=both, headlabel="parameters 0..*"]
+56469688[ label="{Query|+serviceType:ServiceType\l}"]
 
-55854896 -> 55855344[arrowtail=diamond, dir=both, headlabel="carParameters 0..*"]
-55854896[ label="{ItemParameters|}"]
+56484920 -> 56482232[arrowtail=diamond, dir=both, headlabel="hour "]
+56484920 -> 56483128[arrowtail=diamond, dir=both, headlabel="minute "]
+56484920[ label="{Time|}"]
 
-55853104[ label="{Number|[0-9]+}"]
+57030600[ label="{RealEstateParameters|to be implemented}"]
 
-55878576[ label="{PriceTo|do e [0-9]+}"]
+56485816[ label="{CarBrand|alfa romeo\|audi\|bmw\|chevrolet\|citroen\|dacia\|fiat\|ford\|honda\|hyundai\|jaguar\|jeep\|kia\|lancia\|mazda\|mercedes\|nissan\|opel\|peugeot\|renault\|seat\|skoda\|suzuki\|volkswagen\|vw\|volvo}"]
 
-55855344[ label="{CarParameters|+carBrand:CarBrand\l+fuelType:FuelType\l+gearbox:Gearbox\l+carClass:CarClass\l+priceFrom:PriceFrom\l+priceTo:PriceTo\l}"]
+56438328[ label="{ServiceType|Iznajmljivanje\|Kupovina}"]
 
-55856688[ label="{Gearbox|automatik\|manuelni\|poluautomatik}"]
+56470584[ label="{ServiceItem|+car:Car\l+realEstate:RealEstate\l}"]
 
-55877680[ label="{CarClass|gradski\|niska klasa\|srednja klasa\|visoka klasa\|luksuzni\|skuter\|limuzina\|kombi}"]
+56474168[ label="{City|Beograd\|Novi Sad\|Nis}"]
 
-55856240[ label="{FuelType|benzin\|plin\|dizel\|eurodizel\|benzin plin}"]
+57039560[ label="{PriceTo|+number:Number\l}"]
 
-55853552 -> 55854000[arrowtail=diamond, dir=both, headlabel="hour "]
-55853552 -> 55854448[arrowtail=diamond, dir=both, headlabel="minute "]
-55853552[ label="{Time|}"]
+56475960 -> 56484920[arrowtail=diamond, dir=both, headlabel="timeFrom "]
+56475960[ label="{TimeFrom|}"]
 
-55847600[ label="{Day|+number:Number\l}"]
+56444600 -> 56477752[arrowtail=diamond, dir=both, headlabel="dateTo "]
+56444600[ label="{DateTo|}"]
 
-55598192[ label="{BOOL|}"]
+56467896[ label="{INT|}"]
 
-55597296[ label="{ID|}"]
+56449080[ label="{NUMBER|}"]
+56449080 -> 56436536 [dir=back]
+56449080 -> 56467896 [dir=back]
 
-55599152[ label="{FLOAT|}"]
+56435640[ label="{BOOL|}"]
 
-55597744[ label="{STRING|}"]
+56466104[ label="{ID|}"]
 
-55600048[ label="{BASETYPE|}"]
-55600048 -> 55599600 [dir=back]
-55600048 -> 55598192 [dir=back]
-55600048 -> 55597296 [dir=back]
-55600048 -> 55597744 [dir=back]
+56467000[ label="{STRING|}"]
 
-55599600[ label="{NUMBER|}"]
-55599600 -> 55599152 [dir=back]
-55599600 -> 55598640 [dir=back]
+56468792[ label="{BASETYPE|}"]
+56468792 -> 56449080 [dir=back]
+56468792 -> 56435640 [dir=back]
+56468792 -> 56466104 [dir=back]
+56468792 -> 56467000 [dir=back]
 
-55598640[ label="{INT|}"]
+56436536[ label="{FLOAT|}"]
 
 
 }

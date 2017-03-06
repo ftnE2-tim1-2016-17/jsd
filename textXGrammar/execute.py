@@ -131,8 +131,8 @@ class Query(object):
             if not date_to_check:
                 date_to_check = True
                 day_to = self.query_set["dayFrom"] + 1
-                month_to = datetime.datetime.now().month
-                year_to = datetime.datetime.now().year
+                month_to = self.query_set["monthFrom"]
+                year_to = self.query_set["yearFrom"]
                 self.query_set["dayTo"] = day_to
                 self.query_set["monthTo"] = month_to
                 self.query_set["yearTo"] = year_to
@@ -158,21 +158,44 @@ class Query(object):
                 if param.itemParameters.carParameters is not None:
                     for itemParam in param.itemParameters.carParameters:
                         if itemParam.carBrand is not None:
-                            carBrand = itemParam.carBrand
+                            car_brand = itemParam.carBrand
+                            self.query_set["carBrand"] = car_brand
                         if itemParam.fuelType is not None:
-                            fuelType = itemParam.fuelType
+                            fuel_type = itemParam.fuelType
+                            self.query_set["fuelType"] = fuel_type
                         if itemParam.gearbox is not None:
                             gearbox = itemParam.gearbox
+                            self.query_set["gearbox"] = gearbox
                         if itemParam.carClass is not None:
-                            carClass = itemParam.carClass
+                            car_class = itemParam.carClass
+                            self.query_set["carClass"] = car_class
                         if itemParam.priceFrom is not None:
-                            priceFrom = itemParam.priceFrom
+                            price_from = int(itemParam.priceFrom.number)
+                            self.query_set["priceFrom"] = price_from
                         if itemParam.priceTo is not None:
-                            priceTo = itemParam.priceTo
+                            price_to = int(itemParam.priceTo.number)
+                            self.query_set["priceTo"] = price_to
 
         print(self.query_set)
         return self.query_set
 
+
+def check_query_set(query_set):
+    day_to = query_set["dayTo"]
+    month_to = query_set["monthTo"]
+    year_to = query_set["yearTo"]
+    day_from = query_set["dayFrom"]
+    month_from = query_set["monthFrom"]
+    year_from = query_set["yearFrom"]
+    if year_from > year_to:
+        raise ValueError("Datum vracanja(godina) automobila mora biti veci od datuma iznajmljivanja.")
+    elif (month_from > month_to) & (year_from == year_to):
+        raise ValueError("Datum vracanja(mesec) automobila mora biti veci od datuma iznajmljivanja.")
+    elif (day_from >= day_to) & (month_from >= month_to) & (year_from == year_to):
+        raise ValueError("Datum vracanja(dan) automobila mora biti veci od datuma iznajmljivanja.")
+    if ("priceFrom" in query_set) & ("priceTo" in query_set):
+        if query_set["priceFrom"] > query_set["priceTo"]:
+            raise ValueError("Minimalna cena ne moze biti veca od maksimalne.")
 
 def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
 
@@ -199,8 +222,9 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
 
     query = Query()
     query_set = query.interpreter(model)
-    #provjeriri za granicne uslove kod datuma iznajmjivanja i vrcanja vozila,
-    #kao i poredjenje datuma iznajmljivanja < datuma vracanja
-    #return query_set
+    #if query_set has some invalid parameters, ValueError will be raise in check_query_set method
+    check_query_set(query_set)
+    #return query_set with valid parameters
+    return query_set
 
 
