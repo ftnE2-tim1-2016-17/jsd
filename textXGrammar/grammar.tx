@@ -6,7 +6,7 @@ Query:
 ;
 
 ServiceType:
-    'Iznajmljivanje'|'Kupovina'
+    'iznajmljivanje'|'kupovina'
 ;
 
 ServiceItem:
@@ -26,7 +26,7 @@ Parameters:
 ;
 
 City:
-    'Beograd'|'Novi Sad'|'Nis'
+    'beograd'|'novi sad'|'nis'
 ;
 
 DateFrom:
@@ -103,11 +103,11 @@ CarClass:
 ;
 
 PriceFrom:
-    "od""e" Number
+    "od""e" number = Number
 ;
 
 PriceTo:
-    "do""e" Number
+    "do""e" number = Number
 ;
 
 RealEstateParameters:

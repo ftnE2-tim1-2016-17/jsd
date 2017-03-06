@@ -174,6 +174,18 @@ class Query(object):
         return self.query_set
 
 
+def to_lower_case(file_name):
+    var = ""
+    with open(file_name) as f:
+        file_str = f.read()
+        for line in file_str:
+            line = line.lower()
+            var += line
+
+    with open(file_name, 'w') as f:
+        f.write(var)
+
+
 def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
 
     meta_path = os.path.join(path, grammar_file_name)
@@ -186,6 +198,7 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
             graph = pydot.graph_from_dot_file(meta_name + '.dot')
             graph[0].write_png(meta_name + '.png')
 
+    to_lower_case(example_file_name)
     model_path = os.path.join(path, example_file_name)
     model_name = os.path.splitext(model_path)[0]
 
