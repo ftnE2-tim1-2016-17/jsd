@@ -86,7 +86,8 @@ CarParameters:
 ;
 
 CarBrand:
-    name = /[^,]*/
+    "alfa romeo"|"audi"|"bmw"|"chevrolet"|"citroen"|"dacia"|"fiat"|"ford"|"honda"|"hyundai"|"jaguar"|"jeep"|"kia"|"lancia"|
+    "mazda"|"mercedes"|"nissan"|"opel"|"peugeot"|"renault"|"seat"|"skoda"|"suzuki"|"volkswagen"|"vw"|"volvo"
 ;
 
 FuelType:
