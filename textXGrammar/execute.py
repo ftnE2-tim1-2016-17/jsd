@@ -180,6 +180,7 @@ class Query(object):
         return self.query_set
 
 
+<<<<<<< HEAD
 def check_query_set(query_set):
     day_to = query_set["dayTo"]
     month_to = query_set["monthTo"]
@@ -196,6 +197,19 @@ def check_query_set(query_set):
     if ("priceFrom" in query_set) & ("priceTo" in query_set):
         if query_set["priceFrom"] > query_set["priceTo"]:
             raise ValueError("Minimalna cena ne moze biti veca od maksimalne.")
+=======
+def to_lower_case(file_name):
+    var = ""
+    with open(file_name) as f:
+        file_str = f.read()
+        for line in file_str:
+            line = line.lower()
+            var += line
+
+    with open(file_name, 'w') as f:
+        f.write(var)
+
+>>>>>>> 30ff47855d38b56a54a4d39ed033c2e381440c0c
 
 def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
 
@@ -209,6 +223,7 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
             graph = pydot.graph_from_dot_file(meta_name + '.dot')
             graph[0].write_png(meta_name + '.png')
 
+    to_lower_case(example_file_name)
     model_path = os.path.join(path, example_file_name)
     model_name = os.path.splitext(model_path)[0]
 
