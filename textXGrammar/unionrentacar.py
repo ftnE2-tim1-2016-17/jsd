@@ -1,19 +1,121 @@
 import urllib.request
+import os
+from textXGrammar import execute as ex
 
-def make_requests():
+
+query_set = ex.execute(os.path.split(__file__)[0], 'grammar.tx', 'test.query', True, True)
+query_set = {k: str(v) for k, v in query_set.items()}
+print(query_set)
+
+def make_requests(model):
     response = [None]
-
-    if request_www_unionrentacar_com(response):
+    if request_www_unionrentacar_com(response, model):
         html_response = response[0].read()
         print(html_response)
         response[0].close()
+        return html_response
+
+cities = {
+    "0": "0",
+    "beograd": "3",
+    "novi sad": "5",
+    "nis": "3"
+}
+car_brands = {
+    "0": "0",
+    "alfa romeo": "30",
+    "audi": "24",
+    "bmw": "4",
+    "chevrolet": "12",
+    "citroen": "19",
+    "dacia": "14",
+    "fiat": "7",
+    "ford": "26",
+    "honda": "23",
+    "hyundai": "21",
+    "jaguar": "41",
+    "jeep": "34",
+    "kia": "33",
+    "lancia": "31",
+    "mazda": "39",
+    "mercedes": "5",
+    "nissan": "22",
+    "opel": "16",
+    "peugeot": "3",
+    "renault": "6",
+    "seat": "17",
+    "skoda": "15",
+    "suzuki": "25",
+    "volkswagen": "18",
+    "vw": "18",
+    "volvo": "37"
+}
+fuel_types = {
+    "0": "0",
+    "benzin": "1",
+    "plin": "8",
+    "benzin plin": "8",
+    "eurodizel": "9",
+    "dizel": "2"
+}
+gearboxes = {
+    "0": "0",
+    "automatik": "5",
+    "manuelni": "6",
+    "poluautomatik": "7"
+}
+car_classes = {
+    "0": "0",
+    "gradski": "13",
+    "niska klasa": "14",
+    "srednja klasa": "15",
+    "visoka klasa": "17",
+    "luksuzni": "18",
+    "skuter": "24",
+    "limuzina": "25",
+    "kombi": "26"
+}
 
 
-def request_www_unionrentacar_com(response):
+def request_www_unionrentacar_com(response, model):
     response[0] = None
 
     try:
-        req = urllib.request.Request("https://www.unionrentacar.com/search?pickup_town=0&same_location=on&dropoff_town=0&dropoff_location=0&pickup_date=06&pickup_month=03.2017&pickup_hour=18&pickup_minutes=30&dropoff_date=07&dropoff_month=03.2017&dropoff_hour=18&dropoff_minutes=30&car_brand=0&car_model=&fuel_type=0&gearshift_type=0&car_class%5B%5D=0&price_from=0&price_to=0&payway=0&deposit=0&mileage=0&search_submit=&action=search&sidebar_=sidebar_&advanced_search=0&puDay=06&puMonth=03&puYear=2017&doDay=07&doMonth=03&doYear=2017&pickup_location=")
+        req = urllib.request.Request(
+            "https://www.unionrentacar.com/search?"
+            "pickup_town="+cities[model["city"]]+"&"
+            "same_location=on&"
+            "dropoff_town=0&"
+            "dropoff_location=0&"
+            "pickup_date="+model["dayFrom"]+"&"
+            "pickup_month="+model["monthFrom"]+"."+model["yearFrom"]+"&"
+            "pickup_hour="+model["hourFrom"]+"&"
+            "pickup_minutes="+model["minuteFrom"]+"&"
+            "dropoff_date="+model["dayTo"]+"&"
+            "dropoff_month="+model["monthTo"]+"."+model["yearTo"]+"&"
+            "dropoff_hour="+model["hourTo"]+"&"
+            "dropoff_minutes="+model["minuteTo"]+"&"
+            "car_brand="+car_brands[model["carBrand"]]+"&"
+            "car_model=&"
+            "fuel_type="+fuel_types[model["fuelType"]]+"&"
+            "gearshift_type="+gearboxes[model["gearbox"]]+"&"
+            "car_class%5B%5D="+car_classes[model["carClass"]]+"&"
+            "price_from="+model["priceFrom"]+"&"
+            "price_to="+model["priceTo"]+"&"
+            "payway=0&"
+            "deposit=0&"
+            "mileage=0&"
+            "search_submit=&"
+            "action=search&"
+            "sidebar_=sidebar_&"
+            "advanced_search=1&"
+            "puDay="+model["dayFrom"]+"&"
+            "puMonth="+model["monthFrom"]+"&"
+            "puYear="+model["yearFrom"]+"&"
+            "doDay="+model["dayTo"]+"&"
+            "doMonth="+model["monthTo"]+"&"
+            "doYear="+model["yearTo"]+"&"
+            "pickup_location=")
 
         req.add_header("Connection", "keep-alive")
         req.add_header("Upgrade-Insecure-Requests", "1")
@@ -29,9 +131,7 @@ def request_www_unionrentacar_com(response):
         if not hasattr(e, "code"):
             return False
         response[0] = e
-    except:
-        return False
 
     return True
 
-make_requests()
+make_requests(query_set)
