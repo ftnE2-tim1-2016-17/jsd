@@ -6,7 +6,6 @@ import datetime
 
 
 class Query(object):
-
     def __init__(self):
         self.query_set = {}
 
@@ -14,29 +13,42 @@ class Query(object):
 
         service_type = model.serviceType
         service_item = model.serviceItem.car
-
         self.query_set["serviceType"] = service_type
         self.query_set["serviceItem"] = service_item
-        parameters = model.parameters
-        date_from_check = False
-        time_from_check = False
-        date_to_check = True
-        time_to_check = True
+        self.query_set["city"] = 0
+        self.query_set["dayFrom"] = datetime.datetime.now().day
+        self.query_set["monthFrom"] = datetime.datetime.now().month
+        self.query_set["yearFrom"] = datetime.datetime.now().year
+        self.query_set["hourFrom"] = int(datetime.datetime.now().time().hour + 1)
+        self.query_set["minuteFrom"] = 30
+        self.query_set["dayTo"] = self.query_set["dayFrom"] + 1
+        self.query_set["monthTo"] = self.query_set["monthFrom"]
+        self.query_set["yearTo"] = self.query_set["yearFrom"]
+        self.query_set["hourTo"] = self.query_set["hourFrom"]
+        self.query_set["minuteTo"] = self.query_set["minuteFrom"]
+        self.query_set["carBrand"] = 0
+        self.query_set["fuelType"] = 0
+        self.query_set["gearbox"] = 0
+        self.query_set["carClass"] = 0
+        self.query_set["priceFrom"] = 0
+        self.query_set["priceTo"] = 0
 
+        parameters = model.parameters
+
+        date_to_check = False
         for param in parameters:
             if param.city is not None:
                 city = param.city
                 self.query_set["city"] = city
             if param.dateFrom is not None:
-                date_from_check = True
-                date_to_check = False
+                date_to_check = True
                 date_from = param.dateFrom
                 day_from = int(date_from.dateFrom.day.number)
                 if date_from.dateFrom.month is not None:
                     month_from = int(date_from.dateFrom.month.number)
-                    if (month_from == 1) | (month_from == 3) | (month_from == 5) | (month_from == 7) | (month_from == 8)\
+                    if (month_from == 1) | (month_from == 3) | (month_from == 5) | (month_from == 7) | (month_from == 8) \
                             | (month_from == 10) | (month_from == 12):
-                        if (day_from < 1) | (day_from > 30):
+                        if (day_from < 1) | (day_from > 31):
                             raise ValueError("Uneli ste nepostojeci dan za datum iznajmljivanja vozila.")
                     elif month_from == 2:
                         if (day_from < 1) | (day_from > 28):
@@ -64,37 +76,15 @@ class Query(object):
                 self.query_set["monthFrom"] = month_from
                 self.query_set["yearFrom"] = year_from
 
-            if not date_from_check:
-                date_from_check = True
-                date_to_check = False
-                day_from = datetime.datetime.now().day
-                month_from = datetime.datetime.now().month
-                year_from = datetime.datetime.now().year
-                self.query_set["dayFrom"] = day_from
-                self.query_set["monthFrom"] = month_from
-                self.query_set["yearFrom"] = year_from
-
             if param.timeFrom is not None:
                 time_from = param.timeFrom
-                time_from_check = True
-                time_to_check = False
                 hour_from = int(time_from.timeFrom.hour.number)
                 self.query_set["hourFrom"] = hour_from
                 if time_from.timeFrom.minute is not None:
                     minute_from = int(time_from.timeFrom.minute.number)
-                else:
-                    minute_from = 0
-                self.query_set["minuteFrom"] = minute_from
-            if not time_from_check:
-                time_from_check = True
-                time_to_check = False
-                hour_from = int(datetime.datetime.now().time().hour + 1)
-                minute_from = 30
-                self.query_set["hourFrom"] = hour_from
-                self.query_set["minuteFrom"] = minute_from
+                    self.query_set["minuteFrom"] = minute_from
 
             if param.dateTo is not None:
-                date_to_check = True
                 date_to = param.dateTo
                 day_to = int(date_to.dateTo.day.number)
                 if date_to.dateTo.month is not None:
@@ -128,31 +118,20 @@ class Query(object):
                 self.query_set["dayTo"] = day_to
                 self.query_set["monthTo"] = month_to
                 self.query_set["yearTo"] = year_to
-            if not date_to_check:
-                date_to_check = True
-                day_to = self.query_set["dayFrom"] + 1
-                month_to = self.query_set["monthFrom"]
-                year_to = self.query_set["yearFrom"]
-                self.query_set["dayTo"] = day_to
-                self.query_set["monthTo"] = month_to
-                self.query_set["yearTo"] = year_to
+
+            if date_to_check:
+                date_to_check = False
+                self.query_set["dayTo"] = self.query_set["dayFrom"] + 1
+                self.query_set["monthTo"] = self.query_set["monthFrom"]
+                self.query_set["yearTo"] = self.query_set["yearFrom"]
 
             if param.timeTo is not None:
                 time_to = param.timeTo
-                time_to_check = True
                 hour_to = int(time_to.timeTo.hour.number)
                 self.query_set["hourTo"] = hour_to
                 if time_to.timeTo.minute is not None:
                     minute_to = int(time_to.timeTo.minute.number)
-                else:
-                    minute_to = 0
-                self.query_set["minuteTo"] = minute_to
-            if not time_to_check:
-                time_from_check = True
-                hour_to = self.query_set["hourFrom"]
-                minute_to = self.query_set["minuteFrom"]
-                self.query_set["hourTo"] = hour_to
-                self.query_set["minuteTo"] = minute_to
+                    self.query_set["minuteTo"] = minute_to
 
             if param.itemParameters is not None:
                 if param.itemParameters.carParameters is not None:
@@ -176,7 +155,6 @@ class Query(object):
                             price_to = int(itemParam.priceTo.number)
                             self.query_set["priceTo"] = price_to
 
-        print(self.query_set)
         return self.query_set
 
 
@@ -196,6 +174,24 @@ def check_query_set(query_set):
     if ("priceFrom" in query_set) & ("priceTo" in query_set):
         if query_set["priceFrom"] > query_set["priceTo"]:
             raise ValueError("Minimalna cena ne moze biti veca od maksimalne.")
+    # check for invalid return days (example: return date could be 32.1.2017)
+    if ((month_to == 1) | (month_to == 3) | (month_to == 5) | (month_to == 7) | (month_to == 8) | (month_to == 10)) \
+            and day_to == 32:
+        query_set["dayTo"] = 1
+        query_set["monthTo"] = month_to + 1
+    if ((month_to == 4) | (month_to == 6) | (month_to == 9) | (month_to == 11)) and day_to == 31:
+        query_set["dayTo"] = 1
+        query_set["monthTo"] = month_to + 1
+    #check if year is leap
+    if (month_to == 2) and day_to == 29:
+        query_set["dayTo"] = 1
+        query_set["monthTo"] = month_to + 1
+    if (month_to == 12) and (day_to == 32):
+        query_set["dayTo"] = 1
+        query_set["monthTo"] = 1
+        query_set["yearTo"] = year_to + 1
+
+    return query_set
 
 
 def to_lower_case(file_name):
@@ -211,7 +207,6 @@ def to_lower_case(file_name):
 
 
 def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
-
     meta_path = os.path.join(path, grammar_file_name)
     meta_name = os.path.splitext(meta_path)[0]
     metamodel = metamodel_from_file(meta_path)
@@ -236,9 +231,10 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
 
     query = Query()
     query_set = query.interpreter(model)
-    #if query_set has some invalid parameters, ValueError will be raise in check_query_set method
-    check_query_set(query_set)
-    #return query_set with valid parameters
+    # if query_set has some invalid parameters, ValueError will be raise in check_query_set method
+    query_set = check_query_set(query_set)
+    print(query_set)
+    # return query_set with valid parameters
     return query_set
 
 

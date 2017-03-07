@@ -1,0 +1,110 @@
+
+    digraph xtext {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+64883464 -> 64887048[arrowtail=diamond, dir=both, headlabel="dateFrom "]
+64883464[ label="{DateFrom|}"]
+
+64896904[ label="{CarClass|gradski\|niska klasa\|srednja klasa\|visoka klasa\|luksuzni\|skuter\|limuzina\|kombi}"]
+
+64892424[ label="{Minute|+number:Number\l}"]
+
+64877192 -> 64878984[arrowtail=diamond, dir=both, headlabel="serviceItem "]
+64877192 -> 64881672[arrowtail=diamond, dir=both, headlabel="parameters 0..*"]
+64877192[ label="{Query|+serviceType:ServiceType\l}"]
+
+64858376[ label="{Year|+number:Number\l}"]
+
+64881672 -> 64883464[arrowtail=diamond, dir=both, headlabel="dateFrom "]
+64881672 -> 64885256[arrowtail=diamond, dir=both, headlabel="dateTo "]
+64881672 -> 64884360[arrowtail=diamond, dir=both, headlabel="timeFrom "]
+64881672 -> 64886152[arrowtail=diamond, dir=both, headlabel="timeTo "]
+64881672 -> 64861064[arrowtail=diamond, dir=both, headlabel="itemParameters "]
+64881672[ label="{Parameters|+city:City\l+realEstateParameters:RealEstateParameters\l}"]
+
+64887944[ label="{Day|+number:Number\l}"]
+
+64886152 -> 64891528[arrowtail=diamond, dir=both, headlabel="timeTo "]
+64886152[ label="{TimeTo|}"]
+
+64895112[ label="{FuelType|benzin\|plin\|dizel\|eurodizel\|benzin plin}"]
+
+64899592[ label="{RealEstateParameters|to be implemented}"]
+
+64894216[ label="{CarBrand|alfa romeo\|audi\|bmw\|chevrolet\|citroen\|dacia\|fiat\|ford\|honda\|hyundai\|jaguar\|jeep\|kia\|lancia\|mazda\|mercedes\|nissan\|opel\|peugeot\|renault\|seat\|skoda\|suzuki\|volkswagen\|vw\|volvo}"]
+
+64898696[ label="{PriceTo|+number:Number\l}"]
+
+64880776[ label="{RealEstate|stana\|kuca\|kuce\|stan}"]
+
+64860168[ label="{Hour|+number:Number\l}"]
+
+64879880[ label="{Car|automobila\|auto\|auta\|automobila\|vozila}"]
+
+64884360 -> 64891528[arrowtail=diamond, dir=both, headlabel="timeFrom "]
+64884360[ label="{TimeFrom|}"]
+
+64885256 -> 64887048[arrowtail=diamond, dir=both, headlabel="dateTo "]
+64885256[ label="{DateTo|}"]
+
+64887048 -> 64887944[arrowtail=diamond, dir=both, headlabel="day "]
+64887048 -> 64888840[arrowtail=diamond, dir=both, headlabel="month "]
+64887048 -> 64858376[arrowtail=diamond, dir=both, headlabel="year "]
+64887048[ label="{Date|}"]
+
+64890632[ label="{Number|[0-9]+}"]
+
+64893320 -> 64897800[arrowtail=diamond, dir=both, headlabel="priceFrom "]
+64893320 -> 64898696[arrowtail=diamond, dir=both, headlabel="priceTo "]
+64893320[ label="{CarParameters|+carBrand:CarBrand\l+fuelType:FuelType\l+gearbox:Gearbox\l+carClass:CarClass\l}"]
+
+64861064 -> 64893320[arrowtail=diamond, dir=both, headlabel="carParameters 0..*"]
+64861064[ label="{ItemParameters|}"]
+
+64878984[ label="{ServiceItem|+car:Car\l+realEstate:RealEstate\l}"]
+
+64878088[ label="{ServiceType|iznajmljivanje\|kupovina}"]
+
+64888840[ label="{Month|+number:Number\l}"]
+
+64891528 -> 64860168[arrowtail=diamond, dir=both, headlabel="hour "]
+64891528 -> 64892424[arrowtail=diamond, dir=both, headlabel="minute "]
+64891528[ label="{Time|}"]
+
+64882568[ label="{City|beograd\|novi sad\|nis}"]
+
+64897800[ label="{PriceFrom|+number:Number\l}"]
+
+64896008[ label="{Gearbox|automatik\|manuelni\|poluautomatik}"]
+
+64871816[ label="{ID|}"]
+
+64876296[ label="{FLOAT|}"]
+
+64875400[ label="{INT|}"]
+
+64864648[ label="{STRING|}"]
+
+64843144[ label="{BOOL|}"]
+
+64868232[ label="{NUMBER|}"]
+64868232 -> 64876296 [dir=back]
+64868232 -> 64875400 [dir=back]
+
+64889736[ label="{BASETYPE|}"]
+64889736 -> 64868232 [dir=back]
+64889736 -> 64843144 [dir=back]
+64889736 -> 64871816 [dir=back]
+64889736 -> 64864648 [dir=back]
+
+
+}
