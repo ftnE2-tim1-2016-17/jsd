@@ -160,6 +160,13 @@ class Query(object):
 
 
 def check_query_set(query_set):
+    car_brands = [
+        0, "alfa_romeo", "audi", "bmw", "chevrolet", "citroen", "dacia", "fiat", "ford", "honda", "hyundai", "jaguar",
+        "jeep", "kia", "lancia", "mazda", "mercedes", "nissan", "opel", "peugeot", "renault", "seat", "skoda", "suzuki",
+        "volkswagen", "vw", "volvo"
+    ]
+    if query_set["carBrand"] not in car_brands:
+        return "Uneta marka automobila nije prepoznata. Podrzane marke su: " + str(car_brands)
     day_to = query_set["dayTo"]
     month_to = query_set["monthTo"]
     year_to = query_set["yearTo"]
@@ -238,7 +245,7 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
             # if query_set has some invalid parameters, ValueError will be raise in check_query_set method
             if isinstance(query_set, dict):
                 query_set = check_query_set(query_set)
-            # return query_set with valid parameters
+                # return query_set with valid parameters
         elif model.serviceItem.realEstate is not None:
             # to be implemented
             pass

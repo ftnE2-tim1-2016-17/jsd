@@ -17,33 +17,33 @@ def request_www_rentalcars_com(response, model):
     req = urllib.request.Request(
         "http://www.rentalcars.com/SearchResults.do?enabler=&"
         "country=Srbija&"
-        "doYear="+model.yearTo+"&"
-        "city="+model.city+"&"
+        "doYear="+model["yearTo"]+"&"
+        "city="+model["city"]+"&"
         "driverage=on&"
         "doFiltering=true&"
-        "dropCity="+model.city+"&"
+        "dropCity="+model["city"]+"&"
         "driversAge=30&"
         "filterTo=49&"
         "fromLocChoose=true&"
-        "dropLocationName="+model.city+"+(Sva+podru%C4%8Dja)+&"
+        "dropLocationName="+model["city"]+"+(Sva+podru%C4%8Dja)+&"
         "dropCountryCode=&"
-        "doMinute="+model.minuteTo+"&"
+        "doMinute="+model["minuteTo"]+"&"
         "countryCode=&"
-        "puYear="+model.yearFrom+"&"
+        "puYear="+model["yearFrom"]+"&"
         "puSameAsDo=on&"
-        "locationName="+model.city+"+(Sva+podru%C4%8Dja)+&"
-        "puMinute="+model.minuteFrom+"&"
-        "doDay="+model.dayTo+"&"
+        "locationName="+model["city"]+"+(Sva+podru%C4%8Dja)+&"
+        "puMinute="+model["minuteFrom"]+"&"
+        "doDay="+model["dayTo"]+"&"
         "searchType=allareasgeosearch&"
         "filterFrom=0&"
-        "puMonth="+model.monthFrom+"&"
+        "puMonth="+model["monthFrom"]+"&"
         "dropLocation=-1&"
-        "doHour="+model.hourTo+"&"
+        "doHour="+model["hourTo"]+"&"
         "dropCountry=Srbija&"
-        "puDay="+model.dayFrom+"&"
-        "puHour="+model.hourFrom+"&"
+        "puDay="+model["dayFrom"]+"&"
+        "puHour="+model["hourFrom"]+"&"
         "location=-1&"
-        "doMonth="+model.monthTo+"&"
+        "doMonth="+model["monthTo"]+"&"
         "filterCoordinates=44.820934%2c20.307441%3a44.820934%2c20.292169")
 
     req.add_header("Connection", "keep-alive")
@@ -53,7 +53,6 @@ def request_www_rentalcars_com(response, model):
                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                    "Chrome/56.0.2924.87 Safari/537.36")
     req.add_header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-    #req.add_header("Accept-Encoding", "gzip, deflate, sdch")
     req.add_header("Accept-Language", "en-US,en;q=0.8")
     req.add_header("Cookie",
                    "CONNECTIONID=1486380317370|as-378|32899; tj_seed=001d4704101321aee44c0282f073000000; "

@@ -6,7 +6,11 @@ from bs4 import BeautifulSoup
 
 
 query_set = ex.execute(os.path.split(__file__)[0], 'grammar.tx', 'test.query', True, True)
+print(query_set)
+if isinstance(query_set, dict):
+    query_set = {k: str(v) for k, v in query_set.items()}
 
+'''
 html_response = rc.make_requests(query_set)
 html_response = str(html_response)
 html = html_response[2:len(html_response)-1]
@@ -60,4 +64,4 @@ def test(strList, strList1):
 
 with open('result.html', 'w') as f:
     a = test(car_list_test, price_list_test)
-    f.write(a)
+    f.write(a) '''
