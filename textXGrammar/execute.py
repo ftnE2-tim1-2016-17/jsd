@@ -9,7 +9,7 @@ class Query(object):
     def __init__(self):
         self.query_set = {}
 
-    def interpreter(self, model):
+    def interpreter_for_rent_a_car(self, model):
 
         service_type = model.serviceType
         service_item = model.serviceItem.car
@@ -174,7 +174,7 @@ def check_query_set(query_set):
     if ("priceFrom" in query_set) & ("priceTo" in query_set):
         if query_set["priceFrom"] > query_set["priceTo"]:
             raise ValueError("Minimalna cena ne moze biti veca od maksimalne.")
-    # check for invalid return days (example: return date could be 32.1.2017)
+    # check for invalid return date (example: return date could be 32.1.2017)
     if ((month_to == 1) | (month_to == 3) | (month_to == 5) | (month_to == 7) | (month_to == 8) | (month_to == 10)) \
             and day_to == 32:
         query_set["dayTo"] = 1
@@ -182,7 +182,7 @@ def check_query_set(query_set):
     if ((month_to == 4) | (month_to == 6) | (month_to == 9) | (month_to == 11)) and day_to == 31:
         query_set["dayTo"] = 1
         query_set["monthTo"] = month_to + 1
-    #check if year is leap
+    # check if year is leap
     if (month_to == 2) and day_to == 29:
         query_set["dayTo"] = 1
         query_set["monthTo"] = month_to + 1
@@ -230,11 +230,24 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
         graph[0].write_png(model_name + '.png')
 
     query = Query()
-    query_set = query.interpreter(model)
-    # if query_set has some invalid parameters, ValueError will be raise in check_query_set method
-    query_set = check_query_set(query_set)
-    print(query_set)
-    # return query_set with valid parameters
-    return query_set
+    query_set = {}
+    if model.serviceType == "iznajmljivanje":
+        if model.serviceItem.car is not None:
+            query_set = query.interpreter_for_rent_a_car(model)
+            # if query_set has some invalid parameters, ValueError will be raise in check_query_set method
+            query_set = check_query_set(query_set)
+            print(query_set)
+            # return query_set with valid parameters
+        elif model.serviceItem.realEstate is not None:
+            # to be implemented
+            pass
+    elif model.serviceType == "kupovina":
+        if model.serviceItem.car is not None:
+            # to be implemented
+            pass
+        elif model.serviceItem.realEstate is not None:
+            # to be implemented
+            pass
 
+    return query_set
 
