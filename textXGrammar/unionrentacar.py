@@ -1,11 +1,5 @@
 import urllib.request
-import os
-from textXGrammar import execute as ex
 
-
-query_set = ex.execute(os.path.split(__file__)[0], 'grammar.tx', 'test.query', True, True)
-query_set = {k: str(v) for k, v in query_set.items()}
-print(query_set)
 
 def make_requests(model):
     response = [None]
@@ -23,7 +17,7 @@ cities = {
 }
 car_brands = {
     "0": "0",
-    "alfa romeo": "30",
+    "alfa_romeo": "30",
     "audi": "24",
     "bmw": "4",
     "chevrolet": "12",
@@ -133,5 +127,3 @@ def request_www_unionrentacar_com(response, model):
         response[0] = e
 
     return True
-
-make_requests(query_set)

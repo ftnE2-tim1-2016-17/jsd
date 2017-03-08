@@ -43,78 +43,78 @@ class Query(object):
             if param.dateFrom is not None:
                 date_to_check = True
                 date_from = param.dateFrom
-                day_from = int(date_from.dateFrom.day.number)
+                day_from = int(date_from.dateFrom.day)
                 if date_from.dateFrom.month is not None:
-                    month_from = int(date_from.dateFrom.month.number)
+                    month_from = int(date_from.dateFrom.month)
                     if (month_from == 1) | (month_from == 3) | (month_from == 5) | (month_from == 7) | (month_from == 8) \
                             | (month_from == 10) | (month_from == 12):
                         if (day_from < 1) | (day_from > 31):
-                            raise ValueError("Uneli ste nepostojeci dan za datum iznajmljivanja vozila.")
+                            return "Uneli ste nepostojeci dan za datum iznajmljivanja vozila."
                     elif month_from == 2:
                         if (day_from < 1) | (day_from > 28):
-                            raise ValueError("Uneli ste nepostojeci dan za datum iznajmljivanja vozila.")
+                            return "Uneli ste nepostojeci dan za datum iznajmljivanja vozila."
                     elif (month_from == 4) | (month_from == 6) | (month_from == 9) | (month_from == 11):
                         if (day_from < 1) | (day_from > 30):
-                            raise ValueError("Uneli ste nepostojeci dan za datum iznajmljivanja vozila.")
+                            return "Uneli ste nepostojeci dan za datum iznajmljivanja vozila."
                     else:
-                        raise ValueError("Uneli ste nepostojeci mjesec za datum iznajmljivanja vozila.")
+                        return "Uneli ste nepostojeci mjesec za datum iznajmljivanja vozila."
                 else:
                     month_from = datetime.datetime.now().month
                 if date_from.dateFrom.year is not None:
-                    year_from = int(date_from.dateFrom.year.number)
+                    year_from = int(date_from.dateFrom.year)
                     if year_from < datetime.datetime.now().year:
-                        raise ValueError("Godina iznajmljivanja ne moze biti manja od tekuce.")
+                        return "Godina iznajmljivanja ne moze biti manja od tekuce."
                 else:
                     year_from = datetime.datetime.now().year
                 if year_from == datetime.datetime.now().year:
                     if month_from < datetime.datetime.now().month:
-                        raise ValueError("Mjesec iznajmljivanja ne moze biti manji od tekuceg.")
+                        return "Mjesec iznajmljivanja ne moze biti manji od tekuceg."
                     elif month_from == datetime.datetime.now().month:
                         if day_from < datetime.datetime.now().day:
-                            raise ValueError("Dan iznajmljivanja ne moze biti manji od tekuceg.")
+                            return "Dan iznajmljivanja ne moze biti manji od tekuceg."
                 self.query_set["dayFrom"] = day_from
                 self.query_set["monthFrom"] = month_from
                 self.query_set["yearFrom"] = year_from
 
             if param.timeFrom is not None:
                 time_from = param.timeFrom
-                hour_from = int(time_from.timeFrom.hour.number)
+                hour_from = int(time_from.timeFrom.hour)
                 self.query_set["hourFrom"] = hour_from
                 if time_from.timeFrom.minute is not None:
-                    minute_from = int(time_from.timeFrom.minute.number)
+                    minute_from = int(time_from.timeFrom.minute)
                     self.query_set["minuteFrom"] = minute_from
 
             if param.dateTo is not None:
                 date_to = param.dateTo
-                day_to = int(date_to.dateTo.day.number)
+                day_to = int(date_to.dateTo.day)
                 if date_to.dateTo.month is not None:
-                    month_to = int(date_to.dateTo.month.number)
+                    month_to = int(date_to.dateTo.month)
                     if (month_to == 1) | (month_to == 3) | (month_to == 5) | (month_to == 7) | (month_to == 8) | \
                             (month_to == 10) | (month_to == 12):
                         if (day_to < 1) | (day_to > 30):
-                            raise ValueError("Uneli ste nepostojeci dan za datum vracanja vozila.")
+                            return "Uneli ste nepostojeci dan za datum vracanja vozila."
                     elif month_to == 2:
                         if (day_to < 1) | (day_to > 28):
-                            raise ValueError("Uneli ste nepostojeci dan za datum vracanja vozila.")
+                            return "Uneli ste nepostojeci dan za datum vracanja vozila."
                     elif (month_to == 4) | (month_to == 6) | (month_to == 9) | (month_to == 11):
                         if (day_to < 1) | (day_to > 30):
-                            raise ValueError("Uneli ste nepostojeci dan za datum vracanja vozila.")
+                            return "Uneli ste nepostojeci dan za datum vracanja vozila."
                     else:
-                        raise ValueError("Uneli ste nepostojeci mjesec za datum vracanja vozila.")
+                        return "Uneli ste nepostojeci mjesec za datum vracanja vozila."
                 else:
                     month_to = datetime.datetime.now().month
                 if date_to.dateTo.year is not None:
-                    year_to = int(date_to.dateTo.year.number)
+                    year_to = int(date_to.dateTo.year)
                     if year_to < datetime.datetime.now().year:
-                        raise ValueError("Godina vracanja ne moze biti manja od tekuce.")
+                        return "Godina vracanja ne moze biti manja od tekuce."
                 else:
                     year_to = datetime.datetime.now().year
                 if year_to == datetime.datetime.now().year:
                     if month_to < datetime.datetime.now().month:
-                        raise ValueError("Datum vracanja(mjesec) ne moze biti manji od tekuceg.")
+                        return "Datum vracanja(mjesec) ne moze biti manji od tekuceg."
                     elif month_to == datetime.datetime.now().month:
                         if day_to < datetime.datetime.now().day:
-                            raise ValueError("Datum vracanja(dan) ne moze biti manji od tekuceg.")
+                            return "Datum vracanja(dan) ne moze biti manji od tekuceg."
                 self.query_set["dayTo"] = day_to
                 self.query_set["monthTo"] = month_to
                 self.query_set["yearTo"] = year_to
@@ -127,17 +127,24 @@ class Query(object):
 
             if param.timeTo is not None:
                 time_to = param.timeTo
-                hour_to = int(time_to.timeTo.hour.number)
+                hour_to = int(time_to.timeTo.hour)
                 self.query_set["hourTo"] = hour_to
                 if time_to.timeTo.minute is not None:
-                    minute_to = int(time_to.timeTo.minute.number)
+                    minute_to = int(time_to.timeTo.minute)
                     self.query_set["minuteTo"] = minute_to
+
+            if param.priceFrom is not None:
+                price_from = int(param.priceFrom.number)
+                self.query_set["priceFrom"] = price_from
+            if param.priceTo is not None:
+                price_to = int(param.priceTo.number)
+                self.query_set["priceTo"] = price_to
 
             if param.itemParameters is not None:
                 if param.itemParameters.carParameters is not None:
                     for itemParam in param.itemParameters.carParameters:
                         if itemParam.carBrand is not None:
-                            car_brand = itemParam.carBrand
+                            car_brand = itemParam.carBrand.brand
                             self.query_set["carBrand"] = car_brand
                         if itemParam.fuelType is not None:
                             fuel_type = itemParam.fuelType
@@ -148,12 +155,6 @@ class Query(object):
                         if itemParam.carClass is not None:
                             car_class = itemParam.carClass
                             self.query_set["carClass"] = car_class
-                        if itemParam.priceFrom is not None:
-                            price_from = int(itemParam.priceFrom.number)
-                            self.query_set["priceFrom"] = price_from
-                        if itemParam.priceTo is not None:
-                            price_to = int(itemParam.priceTo.number)
-                            self.query_set["priceTo"] = price_to
 
         return self.query_set
 
@@ -166,14 +167,14 @@ def check_query_set(query_set):
     month_from = query_set["monthFrom"]
     year_from = query_set["yearFrom"]
     if year_from > year_to:
-        raise ValueError("Datum vracanja(godina) automobila mora biti veci od datuma iznajmljivanja.")
+        return "Datum vracanja(godina) automobila mora biti veci od datuma iznajmljivanja."
     elif (month_from > month_to) & (year_from == year_to):
-        raise ValueError("Datum vracanja(mesec) automobila mora biti veci od datuma iznajmljivanja.")
+        return "Datum vracanja(mesec) automobila mora biti veci od datuma iznajmljivanja."
     elif (day_from >= day_to) & (month_from >= month_to) & (year_from == year_to):
-        raise ValueError("Datum vracanja(dan) automobila mora biti veci od datuma iznajmljivanja.")
+        return "Datum vracanja(dan) automobila mora biti veci od datuma iznajmljivanja."
     if ("priceFrom" in query_set) & ("priceTo" in query_set):
         if query_set["priceFrom"] > query_set["priceTo"]:
-            raise ValueError("Minimalna cena ne moze biti veca od maksimalne.")
+            return "Minimalna cena ne moze biti veca od maksimalne."
     # check for invalid return date (example: return date could be 32.1.2017)
     if ((month_to == 1) | (month_to == 3) | (month_to == 5) | (month_to == 7) | (month_to == 8) | (month_to == 10)) \
             and day_to == 32:
@@ -235,8 +236,8 @@ def execute(path, grammar_file_name, example_file_name, export_dot, export_png):
         if model.serviceItem.car is not None:
             query_set = query.interpreter_for_rent_a_car(model)
             # if query_set has some invalid parameters, ValueError will be raise in check_query_set method
-            query_set = check_query_set(query_set)
-            print(query_set)
+            if isinstance(query_set, dict):
+                query_set = check_query_set(query_set)
             # return query_set with valid parameters
         elif model.serviceItem.realEstate is not None:
             # to be implemented

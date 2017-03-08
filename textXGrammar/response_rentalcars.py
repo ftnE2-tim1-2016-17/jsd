@@ -6,6 +6,10 @@ from bs4 import BeautifulSoup
 
 
 query_set = ex.execute(os.path.split(__file__)[0], 'grammar.tx', 'test.query', True, True)
+print(query_set)
+if isinstance(query_set, dict):
+    query_set = {k: str(v) for k, v in query_set.items()}
+
 
 '''
 html_response = rc.make_requests(query_set)
