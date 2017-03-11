@@ -26,7 +26,7 @@ Parameters:
 ;
 
 City:
-    "beograd"|("novi" "sad")|"nis"
+    "beograd"|"novi sad"|"nis"
 ;
 
 DateFrom:

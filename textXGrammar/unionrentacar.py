@@ -5,7 +5,6 @@ def make_requests(model):
     response = [None]
     if request_www_unionrentacar_com(response, model):
         html_response = response[0].read()
-        print(html_response)
         response[0].close()
         return html_response
 
