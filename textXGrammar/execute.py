@@ -180,8 +180,9 @@ def check_query_set(query_set):
     elif (day_from >= day_to) & (month_from >= month_to) & (year_from == year_to):
         return "Datum vracanja(dan) automobila mora biti veci od datuma iznajmljivanja."
     if ("priceFrom" in query_set) & ("priceTo" in query_set):
-        if query_set["priceFrom"] > query_set["priceTo"]:
-            return "Minimalna cena ne moze biti veca od maksimalne."
+        if query_set["priceTo"] != 0:
+            if query_set["priceFrom"] > query_set["priceTo"]:
+                return "Minimalna cena ne moze biti veca od maksimalne."
     # check for invalid return date (example: return date could be 32.1.2017)
     if ((month_to == 1) | (month_to == 3) | (month_to == 5) | (month_to == 7) | (month_to == 8) | (month_to == 10)) \
             and day_to == 32:

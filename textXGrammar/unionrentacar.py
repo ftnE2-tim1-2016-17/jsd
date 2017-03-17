@@ -11,7 +11,7 @@ def make_requests(model):
 cities = {
     "0": "0",
     "beograd": "3",
-    "novi sad": "5",
+    "novisad": "5",
     "nis": "3"
 }
 car_brands = {
@@ -47,7 +47,7 @@ fuel_types = {
     "0": "0",
     "benzin": "1",
     "plin": "8",
-    "benzin plin": "8",
+    "benzinplin": "8",
     "eurodizel": "9",
     "dizel": "2"
 }
@@ -60,9 +60,9 @@ gearboxes = {
 car_classes = {
     "0": "0",
     "gradski": "13",
-    "niska klasa": "14",
-    "srednja klasa": "15",
-    "visoka klasa": "17",
+    "niskaklasa": "14",
+    "srednjaklasa": "15",
+    "visokaklasa": "17",
     "luksuzni": "18",
     "skuter": "24",
     "limuzina": "25",
